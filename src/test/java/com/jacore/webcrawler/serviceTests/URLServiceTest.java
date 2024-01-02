@@ -34,4 +34,23 @@ class URLServiceTest {
         assert url.getUrl().equals(urlToCheck);
         assert url.getId().equals(id);
     }
+
+    @Test
+    void findURLBYUrl() {
+        when(urlRepository.findByUrl(urlToCheck)).thenReturn(Optional.of(new URL(id, urlToCheck)));
+        URL url = urlService.findURLByUrl(urlToCheck).get();
+
+        assert url.getUrl().equals(urlToCheck);
+        assert url.getId().equals(id);
+    }
+
+    @Test
+    void saveURL() {
+        when(urlRepository.save(new URL(id, urlToCheck))).thenReturn(new URL(id, urlToCheck));
+
+        URL url = urlService.saveURL(new URL(id, urlToCheck));
+
+        assert url.getUrl().equals(urlToCheck);
+        assert url.getId().equals(id);
+    }
 }

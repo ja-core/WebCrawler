@@ -16,8 +16,8 @@ public class URLService {
     private final URLRepository urlRepository;
 
     @Transactional
-    public void saveURL(URL url) {
-        urlRepository.save(url);
+    public URL saveURL(URL url) {
+        return urlRepository.save(url);
     }
 
     public Optional<URL> findURLById(Long id) {
@@ -25,6 +25,6 @@ public class URLService {
     }
 
     public Optional<URL> findURLByUrl(String url) {
-        return urlRepository.findURLByUrl(url);
+        return urlRepository.findByUrl(url);
     }
 }
